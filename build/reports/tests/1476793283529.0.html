@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta charset="utf-8" />
+	<title>Онлайн консультант</title>
+	<script src="js/main.js?version=3.1.539.1475839318084"></script>
+	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+	<meta content="noindex" name="googlebot" />
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport" />
+	<style> #fromOperator, #fromOperatorHeader, #fromVisitor, #fromVisitorHeader, #promptContainer { display: none; } </style>
+	<script>
+		var url = "css/mac.css?version=3.1.539.1475839318084";
+
+		window.redhlpSettings = {
+			skin: "mac"
+		};
+
+		if (location.href.indexOf("skin=modern") != -1) {
+			url = url.replace("mac", "modern");
+			window.redhlpSettings.skin = "modern";
+		}
+
+		if (location.href.indexOf("skin=material") != -1) {
+			url = url.replace("mac", "material");
+			window.redhlpSettings.skin = "material";
+		}
+
+		var css = document.createElement("link");
+		css.setAttribute("rel", "stylesheet");
+		css.setAttribute("type", "text/css");
+		css.setAttribute("href", url);
+		css.id = "rh-css";
+		document.getElementsByTagName("head")[0].appendChild(css);
+	</script><link rel="stylesheet" type="text/css" href="css/material.css?version=3.1.539.1475839318084" id="rh-css" />
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="https://web.redhelper.ru/vendor/jquery-new.min.js"></script></head>
+<body class="operatorRates no-departments rh-defaultTemplate online">
+
+	<div style="display: none;" id="blocker"></div>
+	<div id="container" style="z-index: 20000;" class="lightText">
+	<div style="display: none" id="chooseDepartment">
+		<div class="center">
+			<div class="chooseDepartmentTextWrapper" style="background: rgba(179, 40, 45, 0.97) none repeat scroll 0% 0%;">
+				<div class="rh-sound"></div>
+				<div class="rh-close"></div>
+				<div class="topHeader colorText">Online</div>
+				<div class="chooseDepartmentText colorText"></div>
+				<span class="hideDepartments"><span class="icon"><span></span></span><span class="txt colorText"></span></span>
+			</div>
+			<div id="departmentsWrapper" class="scroller-parent">
+				<div id="departmentsContainer" class="scroller" data-baron-v="inited" style="width: 0px;">
+					<ul id="departments"></ul>
+					<div class="scroller__track material__scroller">
+						<div id="departments_bar" class="scroller__bar" style="top: 0px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="display: none;" id="offline">
+		<div class="center">
+			<div class="topPanel" style="height: 8.78333em; -moz-user-select: none;">
+				<div class="rh-sound"></div>
+				<div class="rh-close"></div>
+				<div class="header colorText">Форма обратной связи</div>
+				<div class="topText description colorText">Все наши операторы сейчас офлайн. Оставьте сообщение и мы ответим на него в ближайшее время.</div>
+				<a class="showDepartments">
+					<span class="icon"><span></span></span><!--
+				 --><span class="txtWrapper"><span id="topHeader">Online</span><span class="separator"> » </span><span class="txt">Основной отдел</span></span>
+				</a>
+				<div style="clear: both;"></div>
+			</div>
+
+			<div id="offlineHint">Все поля обязательны</div>
+			<div id="offlineError">
+				<span class="icon"></span>
+				<span class="txt"></span>
+			</div>
+			<div id="mailSuccess" style="display: none;"></div>
+			<div id="feedbackForm" style="top: 9.83333em;">
+				<div class="inputField name inputField_name" style="display: block;">
+					<span id="name_title">Ваше имя</span>
+					<input type="text" name="name" id="name" />
+				</div>
+				<div class="inputField email" style="display: block;">
+					<span id="email_title">E-mail</span>
+					<input type="email" name="email" id="email" />
+				</div>
+				<div class="inputField phone" style="display: none;">
+					<span id="phone_title">Телефон</span>
+					<input type="text" name="phone" id="phone" />
+				</div>
+				<div class="inputField message" style="top: 7.5em; display: block;">
+					<span id="message_title">Сообщение</span>
+					<textarea name="message" id="message"></textarea>
+				</div>
+				<div id="actionPanel">
+					<div class="blue-button" id="sendButton" style="-moz-user-select: none;">Отправить</div>
+					<div style="display: none;" id="throbber">Отправка...</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="display: none;" id="offlineSuccess">
+		<div>Ваше сообщение отправлено</div>
+	</div>
+	<div style="" id="online" class="">
+		<div id="onlinePanel" class="">
+			<div class="center">
+				<div class="wrapper">
+					<div class="topPanel" style="background: rgba(179, 40, 45, 0.97) none repeat scroll 0% 0%; -moz-user-select: none;">
+						<div id="chat-loading"></div>
+						<div class="rh-sound"></div>
+						<div class="rh-close"></div>
+						<div id="blured-chat">
+							<div id="blured-chat-wrap" style="top: -96px;">
+							<div class="topText" id="topText">Если есть вопросы, вы можете задать их здесь.</div><div class="msg invitationMessage"><div class="msgHeader fromOperator">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">Консультант, 15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">Здравствуйте, могу ли я вам чем-то помочь?</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+
+							<div id="invitation"></div><div class="msgBlock fromVisitor"><div class="msg opaque" id="a9965157-e357-415b-b1dd-dbfe56e11498"><div class="msgHeader fromVisitor">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">QWERTYUIOPASDFGHJKLZXCVBNM</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div></div><div class="msgBlock fromOperator"><div class="msg opaque"><div class="msgHeader fromOperator">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">Консультант, 15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">QWERTYUIOPASDFGHJKLZXCVBNM</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div></div><div class="msgBlock fromVisitor"><div class="msg opaque" id="7cfd1205-fb1d-4e70-b1eb-9719de1a1cf9"><div class="msgHeader fromVisitor">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">qwertyuiopasdfghjklzxcvbnm</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div></div><div class="msgBlock fromOperator"><div class="msg opaque"><div class="msgHeader fromOperator">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">Консультант, 15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">qwertyuiopasdfghjklzxcvbnm</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div></div>
+
+							<div id="typingLabel" class="msg">
+								<div class="textWrapper">
+									<div class="text"> отвечает</div>
+								</div>
+							</div>
+							<div id="chatLabel" class="msg" style="display: none;">
+								<div class="textWrapper">
+									<div class="text">К вам подключается оператор, подождите</div>
+								</div>
+							</div>
+							<div class="scroller__track material__scroller">
+								<div id="chat_bar" class="scroller__bar" style="top: 64.6667px; height: 190px;"></div>
+							</div>
+						<div style="display: none" id="stickyMessage"><a id="stickyMessageClose"></a><div id="stickyMessageBody"></div></div></div>
+						</div>
+						<div id="faceWrapper">
+							<div id="faceRate">
+								<div id="pi-const-rotating">
+									<div id="pi-shifts">
+										<div class="pi-quarter-container" id="quarter-1">
+											<div class="pi-quarter-window">
+												<div class="pi-quarter-circle"></div>
+											</div>
+										</div>
+										<div class="pi-quarter-container" id="quarter-2">
+											<div class="pi-quarter-window">
+												<div class="pi-quarter-circle"></div>
+											</div>
+										</div>
+										<div class="pi-quarter-container" id="quarter-3">
+											<div class="pi-quarter-window">
+												<div class="pi-quarter-circle"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="" id="faceImgWrapper"><img alt="" id="face" style="display: block;" src="https://dh7xgsr9ech2h.cloudfront.net/images/custom/46519a25-cc64-4c4e-9303-933e4c1bb582.png" title="Консультант" /></div>
+								<div id="rate">
+									<a id="like" title="Оценить оператора"> </a>
+									<a id="dislike" title="Оценить оператора"> </a>
+								</div>
+							</div>
+						</div>
+						<div id="topDescription">
+							<div class="topHeader colorText" id="operatorName">Консультант</div>
+						</div>
+						<div id="chatOperatorInfo">
+							<a class="showDepartments">
+								<span class="icon"><span></span></span><!--
+							 --><span class="txtWrapper colorText"><span class="colorText" id="topHeader">Online</span><span class="separator colorText"> » </span><span class="txt colorText">Основной отдел</span></span>
+							</a>
+						</div>
+					</div>
+					<div id="scrollBarContainer">
+						<div id="scrollBar"></div>
+					</div>
+					<div id="chatContainer" class="scroller-parent">
+						<div id="chatItself" class="scroller baron" data-baron-v="inited" style="width: 309px;">
+							<div class="topText" id="topText">Если есть вопросы, вы можете задать их здесь.</div><div class="msg invitationMessage"><div class="msgHeader fromOperator">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">Консультант, 15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">Здравствуйте, могу ли я вам чем-то помочь?</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+
+							<div id="invitation"></div><div class="msgBlock fromVisitor"><div class="msg opaque" id="a9965157-e357-415b-b1dd-dbfe56e11498"><div class="msgHeader fromVisitor">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">QWERTYUIOPASDFGHJKLZXCVBNM</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div></div><div class="msgBlock fromOperator"><div class="msg opaque"><div class="msgHeader fromOperator">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">Консультант, 15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">QWERTYUIOPASDFGHJKLZXCVBNM</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div></div><div class="msgBlock fromVisitor"><div class="msg opaque" id="7cfd1205-fb1d-4e70-b1eb-9719de1a1cf9"><div class="msgHeader fromVisitor">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">qwertyuiopasdfghjklzxcvbnm</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div></div><div class="msgBlock fromOperator"><div class="msg opaque"><div class="msgHeader fromOperator">
+		<span title="18.10.2016" class="time" style="-moz-user-select: none;">Консультант, 15:21, сегодня</span>
+	</div>
+		<div class="textWrapper">
+			<div class="text">qwertyuiopasdfghjklzxcvbnm</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div></div>
+
+							<div id="typingLabel" class="msg">
+								<div class="textWrapper">
+									<div class="text"> отвечает</div>
+								</div>
+							</div>
+							<div id="chatLabel" class="msg" style="display: none;">
+								<div class="textWrapper">
+									<div class="text">К вам подключается оператор, подождите</div>
+								</div>
+							</div>
+							<div class="scroller__track material__scroller">
+								<div id="chat_bar" class="scroller__bar" style="top: 64.6737px; height: 190px;"></div>
+							</div>
+						<div style="display: none" id="stickyMessage"><a id="stickyMessageClose"></a><div id="stickyMessageBody"></div></div></div>
+					</div>
+					<div id="chatInput">
+						<div id="textAreaWrapper">
+							<div id="textAreaScrollWrapper" data-baron-v="inited" style="width: 219px;"><!--
+								--><textarea spellcheck="false" id="chatTextarea" placeholder="Ввести сообщение..." style="color: rgb(0, 0, 0);"></textarea><!--
+								--><div class="scroller__track material__scroller text__track" style="display: none;">
+									<div id="text_bar" class="scroller__bar" style="top: 0px; height: 0px;"></div>
+								</div>								
+							</div>	
+							<a id="chatSend" title="Отправить сообщение" class=""></a>
+							<div id="chatTextTemp" style="width: 204.133px;"></div>
+						</div>
+						<div id="fileSend"><iframe frameborder="0" src="https://web.redhelper.ru/chat/upload.html"></iframe></div>
+					</div>
+					<div id="fileUploadWrapper">
+						<div class="text"><span>Загрузить файл</span> (или перетащите файл в чат)</div>
+						<input type="file" id="uploadedFile" name="file" />
+					</div>
+				</div>
+			</div>
+		</div>
+	<div id="dropArea"><div><div>Для отправки перетащите файл сюда</div></div></div></div>
+
+	
+
+	
+
+	
+
+	
+	
+		
+<div class="msgHeader fromOperator" id="fromOperatorHeader">
+		<span title="%date%" class="time" style="-moz-user-select: none;">%time%</span>
+	</div><div class="msg" id="fromOperator">
+		<div class="textWrapper">
+			<div class="text">%text%</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div><div class="msgHeader fromVisitor" id="fromVisitorHeader">
+		<span title="%date%" class="time" style="-moz-user-select: none;">%time%</span>
+	</div><div class="msg" id="fromVisitor">
+		<div class="textWrapper">
+			<div class="text">%text%</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div><div class="msg" id="promptContainer">
+		<span title="%date%" class="time" style="-moz-user-select: none;">%promptTime%</span>
+		%text%
+	</div></div>
+	<div id="rh-loadCss"></div>
+	<div id="rh-innerCss"></div>
+	<audio style="display: none" id="audio">
+		<source type="audio/ogg" src="/container/images/common/msg.ogg" />
+		<source type="audio/mp3" src="/container/images/common/msg.mp3" />
+	</audio>
+
+</body></html>
