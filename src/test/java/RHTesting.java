@@ -3,17 +3,19 @@ import com.rctests.OperatorBot;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.SystemClock;
-
-import java.io.Console;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.*;
 
 
 
+
+
+
+
 public class RHTesting {
 
+	@Step("sendMessages")
 	@Test
 	public void sendMessages() throws Exception {
 
