@@ -6,7 +6,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.SystemClock;
 
-
 import java.io.Console;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -39,6 +38,7 @@ public class RHTesting {
 		$(By.id("rh-badge")).click();
 
 		switchTo().frame("rh-chatFrame");
+
 		for (String message : messages) {
 
 			$(By.id("chatTextarea")).setValue(message);

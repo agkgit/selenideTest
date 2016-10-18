@@ -19,6 +19,15 @@ public class OperatorBot implements Runnable
 	private ConnectionConfiguration connConfig;
 	private XMPPConnection connection;
 
+	public static void main() {
+		OperatorBot bot = new OperatorBot(	"krupenin",
+				"qweasd",
+				"xmpp.redhelper.ru",
+				"xmpp.redhelper.ru", 5222);
+		Thread thread = new Thread(bot);
+		thread.start();
+	}
+
 	/**
 	 * В конструктор должны передаваться данные, необходимые для авторизации на жабер-сервере
 	 * @param nick - ник
