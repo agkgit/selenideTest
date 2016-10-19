@@ -7,36 +7,19 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.*;
 
-
-
-
-
-
-
 public class RHTesting {
 
 	@Step("sendMessages")
 	@Test
 	public void sendMessages() throws Exception {
 
-//запуск бота--------------------------------------------------------------------------------------
-		OperatorBot bot = new OperatorBot(	"krupenin",
-											"qweasd",
-											"xmpp.redhelper.ru",
-											"xmpp.redhelper.ru", 5222);
-		Thread thread = new Thread(bot);
-		thread.start();
-//-------------------------------------------------------------------------------------------------
+		startEchoBot();
 
-		String[] messages = 	{"QWERTYUIOPASDFGHJKLZXCVBNM",
-								"qwertyuiopasdfghjklzxcvbnm",
-								"1234567890",
-								"!@#$%^&*()-_=+{}[]|\" +<>,.?/",
-								"ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ",
-								"йцукенгшщзхъфывапролджэячсмитьбю"	};
+		String[] messages = 	{"QWERTYUIOPASDFGHJKLZXCVBNM",			"qwertyuiopasdfghjklzxcvbnm",
+								"1234567890",							"!@#$%^&*()-_=+{}[]|\" +<>,.?/",
+								"ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ",	"йцукенгшщзхъфывапролджэячсмитьбю"	};
 
-		open("http://www.vernee.ru/prod");
-		sleep(1000);
+		open("http://www.vernee.ru/prod");	sleep(1000);
 		$(By.id("rh-badge")).click();
 
 		switchTo().frame("rh-chatFrame");
@@ -46,16 +29,26 @@ public class RHTesting {
 			$(By.id("chatTextarea")).setValue(message);
 			$(By.id("chatSend")).click();
 
-			String xpathVar =	".//div[@class='msgBlock fromOperator'][last()]" +
-								"/div" +
-								"/div[2]" +
-								"/div[text()='" + message + "']";
+			String xpathOfLastMessageFromOperator =	".//div[@class='msgBlock fromOperator'][last()]" +
+													"/div/div[2]/div[text()='" + message + "']";
 
-			SelenideElement element = $(By.xpath(xpathVar));
-			sleep(1000);
-			System.out.print(" " + element.exists());
-			if (!element.exists()) { throw new NoSuchElementException("не найден элемент "+ xpathVar); }
-			sleep(1000);
+			SelenideElement lastMessageFromOperator = $(By.xpath(xpathOfLastMessageFromOperator));	sleep(1000);
+
+			if (!lastMessageFromOperator.exists()) {
+				throw new NoSuchElementException("не найден элемент "+ xpathOfLastMessageFromOperator);
+			}
 		}
 	}
+
+	public void startEchoBot() {
+		OperatorBot bot = new OperatorBot	("krupenin",				//login
+											"qweasd",				//password
+											"xmpp.redhelper.ru",	//domain
+											"xmpp.redhelper.ru",	//server
+											5222					//port
+											);
+		Thread thread = new Thread(bot);
+		thread.start();
+	}
+
 }
